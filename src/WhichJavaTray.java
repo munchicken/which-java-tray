@@ -48,11 +48,16 @@ public class WhichJavaTray {
 
         image = Toolkit.getDefaultToolkit().createImage(getClass().getResource(imageName));
 
-        TrayIcon trayIcon = new TrayIcon(image, "Which Java Tray");
+        PopupMenu popup = new PopupMenu();
+        MenuItem stop = new MenuItem("Quit");
+        popup.add(stop);
+
+        TrayIcon trayIcon = new TrayIcon(image, "Which Java Tray",popup);
 
         trayIcon.setImageAutoSize(true);
         trayIcon.setToolTip(tip);
         tray.add(trayIcon);
         trayIcon.displayMessage(caption, "Which Java Tray", MessageType.INFO);
+
     }
 }
