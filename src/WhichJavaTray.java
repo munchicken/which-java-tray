@@ -9,6 +9,8 @@ Based on the JAVA_HOME environment variable.  I suggest you use %JAVA_HOME%\bin 
  */
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.awt.TrayIcon.MessageType;
 
@@ -49,10 +51,17 @@ public class WhichJavaTray {
         image = Toolkit.getDefaultToolkit().createImage(getClass().getResource(imageName));
 
         PopupMenu popup = new PopupMenu();
-        MenuItem stop = new MenuItem("Quit");
-        popup.add(stop);
 
         TrayIcon trayIcon = new TrayIcon(image, "Which Java Tray",popup);
+        
+        MenuItem stop = new MenuItem("Quit");
+        stop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tray.remove(trayIcon);
+            }
+        });
+        popup.add(stop);
 
         trayIcon.setImageAutoSize(true);
         trayIcon.setToolTip(tip);
