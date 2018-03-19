@@ -1,3 +1,4 @@
+package com.munchicken.whichjavatray;
 /*
 Which Java Tray
 By Sarah Pierce
@@ -50,7 +51,7 @@ public class WhichJavaTray {
             System.err.println("JAVA_HOME not set to 1.7 nor 1.8.");
         }
 
-        image = Toolkit.getDefaultToolkit().createImage(getClass().getResource(imageName));
+        image = Toolkit.getDefaultToolkit().createImage(getClass().getClassLoader().getResource(imageName));
 
         PopupMenu popup = new PopupMenu();
 
